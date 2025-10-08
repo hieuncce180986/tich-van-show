@@ -1,3 +1,5 @@
+"use client";
+
 import HomeClient from "@/modules/home";
 
 export default function Home() {

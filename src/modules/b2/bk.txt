@@ -1,0 +1,35 @@
+  // <div
+      //   className="w-full h-full"
+      //   onMouseEnter={() => setIsHovered(true)}
+      //   onMouseLeave={() => setIsHovered(false)}
+      // >
+      //   <div className="w-60 h-[450px] overflow-hidden rounded-xl relative">
+      //     <Image
+      //       src={image1}
+      //       alt={name}
+      //       width={1000}
+      //       height={1000}
+      //       className="w-full h-full object-cover rounded-xl absolute inset-0 transition-opacity duration-500"
+      //       style={{
+      //         transform: `scale(${scale})`,
+      //         transformOrigin: alignBefore,
+      //         opacity: isHovered ? 0 : 1,
+      //       }}
+      //     />
+      //     <Image
+      //       src={image2}
+      //       alt={name}
+      //       width={1000}
+      //       height={1000}
+      //       className="w-full h-full object-cover rounded-xl absolute inset-0 transition-opacity duration-500"
+      //       style={{
+      //         transform: `scale(${scale})`,
+      //         transformOrigin: alignAfter,
+      //         opacity: isHovered ? 1 : 0,
+      //       }}
+      //     />
+      //   </div>
+      //   <div className="text-2xl font-font-moncheri text-[#FCF9D6] text-center mt-5">
+      //     {name}
+      //   </div>
+      // </div>
