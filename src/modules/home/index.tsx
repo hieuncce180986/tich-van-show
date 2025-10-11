@@ -1,6 +1,5 @@
 "use client";
 
-import Header from "@/layout/header";
 import Footer from "@/layout/footer";
 import B1 from "../b1";
 import B2 from "../b2";

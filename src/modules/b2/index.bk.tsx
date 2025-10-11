@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import Image, { StaticImageData } from "next/image";
 import qv1 from "../../../public/images/QV-1.jpg";
 import qv2 from "../../../public/images/QV-2-2.jpg";
@@ -15,17 +15,34 @@ import ch2 from "../../../public/images/CH-2-2.jpg";
 import { CometCard } from "@/components/ui/comet-card";
 import { motion, useInView } from "framer-motion";
 import "../../styles/styles.css";
+import GlassButton from "@/components/ui/liquid-glass";
 // import LiquidGlass from "@/components/ui/liquid-glass-2";
+
+import { LiquidGlass } from "@specy/liquid-glass-react";
 
 export default function B2() {
   const titleRef = useRef(null);
-  const aboutRef = useRef(null);
   const cardsRef = useRef(null);
   const isTitleInView = useInView(titleRef, { once: true, margin: "-100px" });
   const isCardsInView = useInView(cardsRef, { once: true, margin: "-100px" });
-  const isAboutInView = useInView(aboutRef, { once: true, margin: "-100px" });
+
   // Move useState outside the aboutCard function
   // const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+
+  const glassStyle = useMemo(
+    () => ({
+      depth: 0.5,
+      segments: 32,
+      radius: 0.2,
+      roughness: 0.1,
+      transmission: 1,
+      reflectivity: 0.5,
+      ior: 1.5,
+      dispersion: 0.1,
+      thickness: 0.5,
+    }),
+    []
+  );
 
   const data = [
     {
@@ -186,6 +203,12 @@ export default function B2() {
           <source src="/videos/Flowing.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+        {/* <Image
+          src="https://images.unsplash.com/photo-1744125156184-e0d7e0bc04c4?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="hahha"
+          fill
+          priority
+        /> */}
       </div>
       <div className="relative z-30 h-full max-w-[90rem] flex flex-col items-center justify-center mx-auto">
         <motion.div
@@ -207,12 +230,38 @@ export default function B2() {
           >
             <span className="translate-y-1.5">ABOUT US</span>
           </motion.div> */}
-          <motion.div
-            className="backdrop-blur-3xl bg-gray-200/5 text-[#FCF9D6] font-font-moncheri text-4xl flex items-center justify-center rounded-full w-full h-[4.5rem] shadow-2xl"
+          {/* <motion.div
+            className="backdrop-blur-lg bg-[#E3D06D]/40 text-[#FCF9D6] font-font-moncheri text-4xl flex items-center justify-center rounded-full w-full h-16 shadow-2xl"
             transition={{ duration: 0.3 }}
           >
             <span className="translate-y-1.5">ABOUT US</span>
-          </motion.div>
+          </motion.div> */}
+
+          {/* <GlassButton variant="bold" size="md" className="">
+            Click me
+          </GlassButton> */}
+
+          <LiquidGlass
+            glassStyle={glassStyle}
+            wrapperStyle={{
+              width: "100%",
+              margin: "0 auto",
+            }}
+            style={`padding: 1rem;`}
+          >
+            <div className="text-white font-font-moncheri text-3xl">
+              <h1>ABOUT US</h1>
+            </div>
+          </LiquidGlass>
+          {/* <button
+            role="button"
+            className="golden-button !font-font-moncheri !text-3xl !pt-2 w-full rounded-full !h-16"
+          >
+            <span className="golden-text">ABOUT US</span>
+          </button> */}
+          {/* <GlassButton variant="default" size="md">
+            ABOUT US
+          </GlassButton> */}
         </motion.div>
         <motion.div
           ref={cardsRef}
@@ -243,23 +292,6 @@ export default function B2() {
               )}
             </motion.div>
           ))}
-        </motion.div>
-
-        <motion.div
-          ref={aboutRef}
-          className="backdrop-blur-3xl bg-gray-200/5 text-[#FCF9D6] font-font-montserrat text-lg flex items-center justify-center rounded-lg w-full h-full shadow-2xl py-5 mt-7"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isAboutInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.3 }}
-        >
-          <span className="px-5 text-justify">
-            Tịch Văn là show nghệ thuật kể chuyện qua hình ảnh và sân khấu, lấy
-            cảm hứng từ những tác phẩm văn học Việt Nam. Mỗi vở diễn mang đến
-            trải nghiệm đa giác quan — nơi âm thanh, ánh sáng và cảm xúc giao
-            hòa, đúng với tinh thần “Tái hiện hồn văn, đánh thức cảm quan.”.
-            Chúng tôi mong muốn góp phần lan tỏa giá trị văn hóa và tôn vinh vẻ
-            đẹp của văn học Việt Nam qua ngôn ngữ của sân khấu đương đại.
-          </span>
         </motion.div>
       </div>
     </div>

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import flowing from "../../public/videos/Flowing.gif";
+// import flowing from "../../public/videos/Flowing.gif";
 import logo from "../../public/images/TịchVanTrang.png";
 // import hamburger from "../../public/hamburger.svg";
 // import { useCopyToClipboard } from "usehooks-ts";

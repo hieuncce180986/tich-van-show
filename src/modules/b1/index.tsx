@@ -11,7 +11,7 @@ export default function B1() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const headerRef = useRef(null);
   const mainContentRef = useRef(null);
-  const isHeaderInView = useInView(headerRef, { once: true, margin: "-100px" });
+  // const isHeaderInView = useInView(headerRef, { once: true, margin: "-100px" });
   const isMainContentInView = useInView(mainContentRef, {
     once: true,
     margin: "-100px",
@@ -57,7 +57,7 @@ export default function B1() {
           />
         </motion.div>
         <motion.div
-          className="text-[#FCF9F6] font-font-moncheri text-base flex flex-row gap-10"
+          className="text-[#FCF9F6] font-font-montserrat text-base flex flex-row gap-10"
           initial={{ opacity: 0, x: 50 }}
           animate={
             { opacity: 1, x: 0 }
