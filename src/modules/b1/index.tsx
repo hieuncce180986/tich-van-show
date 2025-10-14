@@ -4,8 +4,8 @@ import Image from "next/image";
 import logo from "../../../public/images/TịchVanTrang.png";
 import main from "../../../public/images/TịchVan.png";
 import { Ticket } from "lucide-react";
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 
 export default function B1() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -16,6 +16,41 @@ export default function B1() {
     once: true,
     margin: "-100px",
   });
+
+  const [selectedTab, setSelectedTab] = useState("trang-chu");
+  const tabRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [tabPositions, setTabPositions] = useState<
+    { x: number; width: number }[]
+  >([]);
+
+  // Helper function to get tab index
+  const getTabIndex = (tab: string) => {
+    const tabs = ["trang-chu", "dat-ve", "ve-chung-toi", "reviews", "lien-he"];
+    return tabs.indexOf(tab);
+  };
+
+  // Update tab positions when component mounts or selectedTab changes
+  useEffect(() => {
+    const updatePositions = () => {
+      const positions = tabRefs.current.map((ref) => {
+        if (ref) {
+          const rect = ref.getBoundingClientRect();
+          const containerRect = ref.parentElement?.getBoundingClientRect();
+          return {
+            x: rect.left - (containerRect?.left || 0),
+            width: rect.width,
+          };
+        }
+        return { x: 0, width: 0 };
+      });
+      setTabPositions(positions);
+    };
+
+    updatePositions();
+    window.addEventListener("resize", updatePositions);
+    return () => window.removeEventListener("resize", updatePositions);
+  }, [selectedTab]);
+
   return (
     <div className="text-white relative">
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black z-20"></div>
@@ -33,79 +68,10 @@ export default function B1() {
           Your browser does not support the video tag.
         </video>
       </div>
-      <motion.div
-        ref={headerRef}
-        className="relative z-10 py-5 px-20 flex justify-between items-center backdrop-blur-md"
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-      >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={
-            { opacity: 1, scale: 1 }
-            // : { opacity: 0, scale: 0.5 }
-          }
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          <Image
-            src={logo}
-            alt="logo"
-            width={1000}
-            height={1000}
-            className="w-16 h-full"
-          />
-        </motion.div>
-        <motion.div
-          className="text-[#FCF9F6] font-font-montserrat text-base flex flex-row gap-10"
-          initial={{ opacity: 0, x: 50 }}
-          animate={
-            { opacity: 1, x: 0 }
-            // : { opacity: 0, x: 50 }
-          }
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <motion.div
-            whileHover={{ scale: 1.1, color: "#E3D06D" }}
-            transition={{ duration: 0.2 }}
-            className="cursor-pointer"
-          >
-            Trang chủ
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.1, color: "#E3D06D" }}
-            transition={{ duration: 0.2 }}
-            className="cursor-pointer"
-          >
-            Đặt vé
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.1, color: "#E3D06D" }}
-            transition={{ duration: 0.2 }}
-            className="cursor-pointer"
-          >
-            Về chúng tôi
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.1, color: "#E3D06D" }}
-            transition={{ duration: 0.2 }}
-            className="cursor-pointer"
-          >
-            Reviews
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.1, color: "#E3D06D" }}
-            transition={{ duration: 0.2 }}
-            className="cursor-pointer"
-          >
-            Liên hệ
-          </motion.div>
-        </motion.div>
-      </motion.div>
       <div className="relative z-30 grid grid-cols-12 h-screen">
         <motion.div
           ref={mainContentRef}
-          className="col-span-6 flex flex-col justify-center items-center ml-32 pb-36"
+          className="col-span-6 flex flex-col justify-center items-center ml-32 pb-0"
           initial={{ opacity: 0, x: -100 }}
           animate={
             isMainContentInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }
@@ -195,6 +161,17 @@ export default function B1() {
           }}
         >
           {isAudioPlaying ? "🔊 AUDIO ON" : "🔇 MUTE"}
+        </div> */}
+        {/* 
+        <div
+          id="dexscreener-embed"
+          className="w-full h-[580px] mt-20 mb-10 lg:mb-5"
+        >
+          <iframe
+            src="https://dexscreener.com/bsc/0x2D4659a43FEA82E8E143e483EA6E08480a820BC4?embed=1&loadChartSettings=0&trades=0&chartLeftToolbar=0&chartDefaultOnMobile=1&chartTheme=dark&theme=dark&chartStyle=1&chartType=usd&interval=15"
+            title="DexScreener Chart"
+            className="px-5 rounded-[0px]"
+          />
         </div> */}
       </div>
     </div>
