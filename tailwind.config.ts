@@ -1,3 +1,4 @@
+import { heroui } from "@heroui/react";
 import type { Config } from "tailwindcss";
 
 export default {
@@ -10,6 +11,7 @@ export default {
     "./modules/**/*.{ts,tsx}",
     "./utils/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
+    "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -59,6 +61,7 @@ export default {
         "font-helvetica": "var(--font-helvetica)",
         "font-moncheri": "var(--font-moncheri)",
         "font-montserrat": "var(--font-montserrat)",
+        "font-1ftv-vip-boogo": "var(--font-1ftv-vip-boogo)",
       },
       screen: {
         md: "790px",
@@ -71,5 +74,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), heroui()],
 } satisfies Config;

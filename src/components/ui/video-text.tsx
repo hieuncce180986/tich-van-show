@@ -47,7 +47,7 @@ export interface VideoTextProps {
 export function VideoText({
   src,
   children,
-  className = "",
+  className = "font-font-1ftv-vip-boogo",
   autoPlay = true,
   muted = true,
   loop = true,
@@ -56,7 +56,7 @@ export function VideoText({
   fontWeight = "bold",
   textAnchor = "middle",
   dominantBaseline = "middle",
-  fontFamily = "sans-serif",
+  fontFamily = "1FTV-VIP-Boogo",
   as: Component = "div",
   letterSpacing,
   textTransform = "none",
@@ -85,6 +85,9 @@ export function VideoText({
     const responsiveFontSize =
       typeof fontSize === "number" ? `${fontSize}vw` : fontSize;
 
+    // Debug: Log the font family being used
+    console.log("VideoText fontFamily:", fontFamily);
+
     // Escape special characters in content for SVG
     const escapedContent = content
       .replace(/&/g, "&amp;")
@@ -101,8 +104,8 @@ export function VideoText({
           font-size='${responsiveFontSize}' 
           font-weight='${fontWeight}' 
           text-anchor='${textAnchor}' 
+          font-family='1FTV-VIP-Boogo'
           dominant-baseline='${dominantBaseline}' 
-          font-family='${fontFamily}'
           ${letterSpacing ? `letter-spacing='${letterSpacing}'` : ""}
           ${textTransform !== "none" ? `text-transform='${textTransform}'` : ""}
         >
@@ -200,7 +203,7 @@ export function VideoText({
       )}
 
       {/* Screen reader text */}
-      <span className="sr-only">{content}</span>
+      <span className="sr-only font-font-1ftv-vip-boogo">{content}</span>
     </Component>
   );
 }

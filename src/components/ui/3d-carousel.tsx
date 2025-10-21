@@ -18,29 +18,37 @@ const FALLBACK =
 // ];
 const DEFAULT_IMAGES = [
   {
-    src: "https://i.pinimg.com/736x/9f/09/45/9f0945103fc6158cb16e1828a2665b5c.jpg",
-    name: "Nguyen Van A",
+    src: "https://e7.pngegg.com/pngimages/434/127/png-clipart-mystery-mysterious-man-s-woman-silhouette-thumbnail.png",
+    name: "Actor 1",
   },
   {
-    src: "https://i.pinimg.com/1200x/6e/4c/39/6e4c394783c731f261f295e7ffd1deed.jpg",
-    name: "Nguyen Van B",
+    src: "https://e7.pngegg.com/pngimages/434/127/png-clipart-mystery-mysterious-man-s-woman-silhouette-thumbnail.png",
+    name: "Actor 2",
   },
   {
-    src: "https://i.pinimg.com/1200x/1e/0c/1c/1e0c1c9c868bf07b4c27a275fb3087af.jpg",
-    name: "Nguyen Van C",
+    src: "https://e7.pngegg.com/pngimages/434/127/png-clipart-mystery-mysterious-man-s-woman-silhouette-thumbnail.png",
+    name: "Actor 3",
   },
   {
-    src: "https://i.pinimg.com/736x/30/91/09/3091098a15810ddbbd58d5e007bc7207.jpg",
-    name: "Nguyen Van D",
+    src: "https://e7.pngegg.com/pngimages/434/127/png-clipart-mystery-mysterious-man-s-woman-silhouette-thumbnail.png",
+    name: "Actor 4",
   },
   {
-    src: "https://i.pinimg.com/736x/07/cf/4a/07cf4a3a6f4144b4c7ac8e2ec5978dc1.jpg",
-    name: "Nguyen Van E",
+    src: "https://e7.pngegg.com/pngimages/434/127/png-clipart-mystery-mysterious-man-s-woman-silhouette-thumbnail.png",
+    name: "Actor 5",
   },
-  {
-    src: "https://i.pinimg.com/736x/5d/bf/f2/5dbff2b4c0fdcb9815e989f0db386f95.jpg",
-    name: "Nguyen Van F",
-  },
+  // {
+  //   src: "https://e7.pngegg.com/pngimages/434/127/png-clipart-mystery-mysterious-man-s-woman-silhouette-thumbnail.png",
+  //   name: "Actor 6",
+  // },
+  // {
+  //   src: "https://e7.pngegg.com/pngimages/434/127/png-clipart-mystery-mysterious-man-s-woman-silhouette-thumbnail.png",
+  //   name: "Actor 7",
+  // },
+  // {
+  //   src: "https://e7.pngegg.com/pngimages/434/127/png-clipart-mystery-mysterious-man-s-woman-silhouette-thumbnail.png",
+  //   name: "Actor 8",
+  // },
 ];
 
 /* 2️⃣  Config ————————————————————————— */

@@ -45,3 +45,168 @@
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(110, 80, 20, 0.4),
     inset 0 -2px 5px 1px #b17d10, inset 0 -1px 1px 3px rgba(250, 227, 133, 1);
 }
+
+.loading {
+  display: flex;
+  margin-top: 1em;
+  margin-left: 0.3em;
+}
+
+.load {
+  width: 3px;
+  height: 33px;
+  background-color: #b8931b;
+  animation: 1s move6 infinite;
+  border-radius: 5px;
+  margin: 0.1em;
+}
+
+.load-stop {
+  width: 3px;
+  height: 3px;
+  background-color: #b8931b;
+  border-radius: 5px;
+  margin: 0.1em;
+}
+
+.load:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.load:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.load:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+@keyframes move6 {
+  0% {
+    height: 0.2em;
+  }
+
+  25% {
+    height: 0.7em;
+  }
+
+  50% {
+    height: 1.5em;
+  }
+
+  100% {
+    height: 0.2em;
+  }
+}
+
+.swiper-wrapper {
+  height: 580px;
+  background: none !important;
+}
+
+.swiper-pagination-bullet {
+  background: none !important;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  display: none !important;
+}
+
+.image-gallery {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  bottom: 0;
+}
+
+.image-gallery-thumbnails-wrapper {
+  position: fixed;
+  height: 100px;
+  bottom: 0;
+  width: 100%;
+  z-index: 50;
+  padding: 10px;
+}
+
+.image-gallery-thumbnail {
+  border: 2px solid transparent;
+  transition: border 0.3s ease-in-out;
+}
+
+.image-gallery-thumbnail.active {
+  border: 2px solid orange;
+}
+
+.swiper-pagination-bullet {
+  background-color: black;
+}
+
+.scrollbar::-webkit-scrollbar {
+  height: 6px;
+}
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: #d1d5db;
+  border-radius: 4px;
+}
+.scrollbar::-webkit-scrollbar-track {
+  background-color: #f3f4f6;
+}
+
+.scroll-bar-style::-webkit-scrollbar {
+  display: none;
+}
+
+/* SWITCHER */
+/* From Uiverse.io by Xtenso */
+.filter-switch {
+  border: 2px solid #b8931b;
+  border-radius: 30px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  overflow: hidden;
+}
+.filter-switch input {
+  display: none;
+}
+.filter-switch label {
+  flex: 1;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  border-radius: 30px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: all 0.5s;
+  font-weight: 500;
+  font-size: 18px;
+}
+.filter-switch .background {
+  position: absolute;
+  width: 49%;
+  height: 38px;
+  background-color: #b8931b;
+  top: 4px;
+  left: 4px;
+  border-radius: 30px;
+  transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+#option2:checked ~ .background {
+  left: 50%;
+}
+#option1:checked + label[for="option1"] {
+  color: #ffffff;
+  font-weight: bold;
+}
+#option2:checked + label[for="option2"] {
+  color: #ffffff;
+  font-weight: bold;
+}
+#option1:not(:checked) + label[for="option1"],
+#option2:not(:checked) + label[for="option2"] {
+  color: #7d7d7d;
+}

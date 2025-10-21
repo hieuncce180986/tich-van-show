@@ -7,6 +7,7 @@
   --font-helvetica: "Helvetica", sans-serif;
   --font-moncheri: "DFVN-TAN-MON-CHERI", sans-serif;
   --font-montserrat: "Montserrat-Regular", sans-serif;
+  --font-1ftv-vip-boogo: "1FTV-VIP-Boogo", "Arial", sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,6 +16,7 @@
     --font-helvetica: "Helvetica", sans-serif;
     --font-moncheri: "DFVN-TAN-MON-CHERI", sans-serif;
     --font-montserrat: "Montserrat-Regular", sans-serif;
+    --font-1ftv-vip-boogo: "1FTV-VIP-Boogo", "Arial", sans-serif;
   }
 }
 
@@ -42,6 +44,14 @@
   font-style: normal;
 }
 
+/* montserrat */
+@font-face {
+  font-family: "1FTV-VIP-Boogo";
+  src: url("./fonts/1FTV-VIP-Boogo.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 @layer base {
   .font-outline-2 {
     -webkit-text-stroke: 1.5px black;
@@ -51,7 +61,7 @@
   }
   :root {
     --background: 0 0% 0%;
-    --foreground: 0 0% 98%;
+    --foreground: 0 0% 0%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
@@ -77,8 +87,8 @@
     --radius: 0.5rem;
   }
   .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 0%;
     --card: 0 0% 3.9%;
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 3.9%;

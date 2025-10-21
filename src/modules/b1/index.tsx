@@ -6,6 +6,7 @@ import main from "../../../public/images/TịchVan.png";
 import { Ticket } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
+import "@/styles/styles.css";
 
 export default function B1() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -22,6 +23,7 @@ export default function B1() {
   const [tabPositions, setTabPositions] = useState<
     { x: number; width: number }[]
   >([]);
+  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
 
   // Helper function to get tab index
   const getTabIndex = (tab: string) => {
@@ -52,14 +54,14 @@ export default function B1() {
   }, [selectedTab]);
 
   return (
-    <div className="text-white relative">
+    <div className="text-white relative" id="home">
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black z-20"></div>
       <div className="absolute inset-0 w-full h-full z-10">
         <video
           ref={videoRef}
           autoPlay
           controls={false}
-          muted={true}
+          muted={!isAudioPlaying}
           loop
           playsInline
           className="w-full h-full object-cover"
@@ -69,16 +71,30 @@ export default function B1() {
         </video>
       </div>
       <div className="relative z-30 grid grid-cols-12 h-screen">
+        <div
+          className="cursor-pointer loading absolute bottom-[10%] right-[5%] rotate-180 backdrop-blur-lg border border-white/20 w-14 h-14 flex items-center justify-center rounded-full hover:bg-white/10 transition-all duration-300"
+          onClick={() => {
+            setIsAudioPlaying(!isAudioPlaying);
+            if (videoRef.current) {
+              videoRef.current.muted = isAudioPlaying;
+            }
+          }}
+        >
+          <div className={`${isAudioPlaying ? "load" : "load-stop"}`}></div>
+          <div className={`${isAudioPlaying ? "load" : "load-stop"}`}></div>
+          <div className={`${isAudioPlaying ? "load" : "load-stop"}`}></div>
+          <div className={`${isAudioPlaying ? "load" : "load-stop"}`}></div>
+        </div>
         <motion.div
           ref={mainContentRef}
-          className="col-span-6 flex flex-col justify-center items-center ml-32 pb-0"
+          className="col-span-12 lg:col-span-6 flex flex-col justify-center items-center lg:ml-32 pb-0"
           initial={{ opacity: 0, x: -100 }}
           animate={
             isMainContentInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }
           }
           transition={{ duration: 1, delay: 0.8 }}
         >
-          <div className="">
+          <div className="w-full lg:w-[100%] px-10 lg:px-0">
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={
@@ -93,11 +109,11 @@ export default function B1() {
                 alt="logo"
                 width={1000}
                 height={1000}
-                className="w-[75%] h-full"
+                className="w-full lg:w-[65%] h-full"
               />
             </motion.div>
             <motion.div
-              className="text-[#FCF9F6] font-font-moncheri text-xl w-full my-5 text-center pr-40"
+              className="text-[#FCF9F6] font-font-moncheri text-xl w-full my-5 text-center lg:pr-40"
               initial={{ opacity: 0, y: 30 }}
               animate={
                 isMainContentInView
@@ -109,7 +125,7 @@ export default function B1() {
               Tái hiện hồn văn, đánh thức cảm quan
             </motion.div>
             <motion.div
-              className="flex flex-row items-center justify-center gap-10 pr-40"
+              className="flex flex-row items-center justify-center gap-10 lg:pr-40"
               initial={{ opacity: 0, y: 30 }}
               animate={
                 isMainContentInView
