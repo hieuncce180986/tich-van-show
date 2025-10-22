@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Form, Input, Select, SelectItem, Button } from "@heroui/react";
 import Image from "next/image";
 import {
@@ -16,6 +16,9 @@ import {
 import { QRDialog } from "./components/qr";
 import { TicketsService } from "@/services/tickets";
 import { UploadService } from "@/services/upload";
+import { motion, useInView } from "framer-motion";
+import { useToast } from "@/hooks/use-toast";
+import { Toaster } from "@/components/ui/toaster";
 
 interface FormData {
   name: string;
@@ -38,8 +41,12 @@ interface FormErrors {
 }
 
 export default function B4() {
+  const { toast } = useToast();
   const MORNING_AMOUNT_OF_TICKET = 30;
   const AFTERNOON_AMOUNT_OF_TICKET = 30;
+
+  const formRef = useRef(null);
+  const isFormInView = useInView(formRef, { once: true, margin: "-100px" });
 
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -95,9 +102,6 @@ export default function B4() {
           "show-afternoon"
         );
 
-        console.log("Response morning:", responseMorning);
-        console.log("Response afternoon:", responseAfternoon);
-
         setScheduleMorning(responseMorning);
         setScheduleAfternoon(responseAfternoon);
       } catch (error) {
@@ -109,12 +113,12 @@ export default function B4() {
     fetchSchedule();
 
     // Set up interval to fetch every 5 seconds
-    const interval = setInterval(fetchSchedule, 10000);
+    // const interval = setInterval(fetchSchedule, 10000);
 
-    // Cleanup interval on component unmount
-    return () => {
-      clearInterval(interval);
-    };
+    // // Cleanup interval on component unmount
+    // return () => {
+    //   clearInterval(interval);
+    // };
   }, []);
 
   // Effect to adjust quantity when schedule changes
@@ -131,24 +135,32 @@ export default function B4() {
     const newErrors: FormErrors = {};
 
     // Name validation
-    if (!formData.name.trim()) {
+    const trimmedName = formData.name.trim();
+    if (!trimmedName) {
       newErrors.name = "Họ và tên là bắt buộc";
-    } else if (formData.name.trim().length < 2) {
+    } else if (trimmedName.length < 2) {
       newErrors.name = "Họ và tên phải có ít nhất 2 ký tự";
     }
 
     // Email validation
-    if (!formData.email.trim()) {
+    const trimmedEmail = formData.email.trim();
+    if (!trimmedEmail) {
       newErrors.email = "Email là bắt buộc";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
       newErrors.email = "Email không hợp lệ";
     }
 
     // Phone validation
-    if (!formData.phone.trim()) {
+    const trimmedPhone = formData.phone.trim();
+    if (!trimmedPhone) {
       newErrors.phone = "Số điện thoại là bắt buộc";
-    } else if (!/^[0-9]+$/.test(formData.phone)) {
+    } else if (!/^\d{9,11}$/.test(trimmedPhone)) {
       newErrors.phone = "Số điện thoại không hợp lệ";
+    }
+
+    // Schedule validation
+    if (!formData.schedule) {
+      newErrors.schedule = "Vui lòng chọn suất chiếu";
     }
 
     // Quantity validation
@@ -159,11 +171,6 @@ export default function B4() {
       if (formData.quantity > maxAvailable) {
         newErrors.quantity = `Số lượng không được vượt quá ${maxAvailable} vé còn lại`;
       }
-    }
-
-    // Schedule validation
-    if (!formData.schedule) {
-      newErrors.schedule = "Vui lòng chọn suất chiếu";
     }
 
     // Image validation
@@ -268,8 +275,6 @@ export default function B4() {
         return;
       }
 
-      console.log("Uploaded image:", bankImage[0]);
-
       // Prepare form data for submission
       const body = {
         show_name: "Tên Show Diễn",
@@ -333,7 +338,15 @@ export default function B4() {
 
         <div className="relative z-30 container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-2xl">
+            <motion.div
+              ref={formRef}
+              className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-2xl"
+              initial={{ opacity: 0, y: 100 }}
+              animate={
+                isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }
+              }
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
               <div className="text-center mb-8">
                 <h2 className="text-3xl font-bold text-white mb-2">
                   Đăng Ký Tham Gia
@@ -343,80 +356,57 @@ export default function B4() {
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} noValidate className="space-y-6">
                 {/* Name Field */}
                 <div>
-                  <Input
-                    // label="Họ và Tên"
+                  <input
                     placeholder="Nhập họ và tên của bạn"
                     value={formData.name}
-                    onValueChange={(value) => handleInputChange("name", value)}
-                    isRequired
-                    isInvalid={!!errors.name}
-                    errorMessage={errors.name}
-                    // startContent={<User className="w-4 h-4 text-gray-400" />}
-                    classNames={{
-                      input: "text-white placeholder:text-white/60",
-                      inputWrapper:
-                        "bg-white/10 border-white/20 hover:bg-white/15",
-                      label: "text-white font-medium",
-                    }}
+                    onChange={(e) => handleInputChange("name", e.target.value)}
+                    className="text-white w-full p-2 bg-white/10 border-white/20 hover:bg-white/15 focus:outline-none focus:ring-0 focus:border-none focus:ring-offset-0"
                   />
+                  {errors.name && (
+                    <p className="text-red-400 text-sm mt-1">{errors.name}</p>
+                  )}
                 </div>
 
                 {/* Email Field */}
                 <div>
-                  <Input
+                  <input
                     type="email"
-                    // label="Email"
                     placeholder="Nhập địa chỉ email"
                     value={formData.email}
-                    onValueChange={(value) => handleInputChange("email", value)}
-                    isRequired
-                    isInvalid={!!errors.email}
-                    errorMessage={errors.email}
-                    // startContent={<Mail className="w-4 h-4 text-gray-400" />}
-                    classNames={{
-                      input: "text-white placeholder:text-white/60",
-                      inputWrapper:
-                        "bg-white/10 border-white/20 hover:bg-white/15",
-                      label: "text-white font-medium",
-                    }}
+                    onChange={(e) => handleInputChange("email", e.target.value)}
+                    className="text-white w-full p-2 bg-white/10 border-white/20 hover:bg-white/15 focus:outline-none focus:ring-0 focus:border-none focus:ring-offset-0"
                   />
+                  {errors.email && (
+                    <p className="text-red-400 text-sm mt-1">{errors.email}</p>
+                  )}
                 </div>
 
                 {/* Phone Field */}
                 <div>
-                  <Input
+                  <input
                     type="tel"
-                    // label="Số điện thoại"
                     placeholder="Nhập số điện thoại"
                     value={formData.phone}
-                    onValueChange={(value) => handleInputChange("phone", value)}
-                    isRequired
-                    isInvalid={!!errors.phone}
-                    errorMessage={errors.phone}
-                    // startContent={<Phone className="w-4 h-4 text-gray-400" />}
-                    classNames={{
-                      input: "text-white placeholder:text-white/60",
-                      inputWrapper:
-                        "bg-white/10 border-white/20 hover:bg-white/15",
-                      label: "text-white font-medium",
-                    }}
+                    onChange={(e) => handleInputChange("phone", e.target.value)}
+                    className="text-white w-full p-2 bg-white/10 border-white/20 hover:bg-white/15 focus:outline-none focus:ring-0 focus:border-none focus:ring-offset-0"
                   />
+                  {errors.phone && (
+                    <p className="text-red-400 text-sm mt-1">{errors.phone}</p>
+                  )}
                 </div>
 
                 {/* Schedule Field */}
                 <div>
                   <Select
-                    // label="Chọn suất chiếu"
                     placeholder="Chọn suất chiếu phù hợp"
                     selectedKeys={formData.schedule ? [formData.schedule] : []}
                     onSelectionChange={(keys) => {
                       const selectedKey = Array.from(keys)[0] as string;
                       handleInputChange("schedule", selectedKey);
                     }}
-                    isRequired
                     isInvalid={!!errors.schedule}
                     errorMessage={errors.schedule}
                     // startContent={<Calendar className="w-4 h-4 text-gray-400" />}
@@ -424,6 +414,7 @@ export default function B4() {
                       trigger: "bg-white/10 border-white/20 hover:bg-white/15",
                       value: "text-white",
                       label: "text-white font-medium",
+                      errorMessage: "text-red-400 text-sm mt-1",
                     }}
                     renderValue={(items) => {
                       return items.map((item) => (
@@ -524,14 +515,13 @@ export default function B4() {
                         );
                         handleInputChange("quantity", clampedValue);
                       }}
-                      isRequired
                       isInvalid={!!errors.quantity}
                       errorMessage={errors.quantity}
                       classNames={{
                         input:
                           "text-white placeholder:text-white/60 text-center",
-                        inputWrapper:
-                          "bg-white/10 border-white/20 hover:bg-white/15",
+                        mainWrapper:
+                          "bg-white/10 border-white/20 hover:bg-white/15 focus:outline-none focus:ring-0 focus:border-none",
                         label: "text-white font-medium",
                       }}
                     />
@@ -634,7 +624,7 @@ export default function B4() {
                   </Button>
                 </div>
               </form>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

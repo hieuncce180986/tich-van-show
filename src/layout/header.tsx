@@ -41,7 +41,7 @@ export default function Header() {
       { id: "about", tab: "ve-chung-toi" },
       { id: "actor", tab: "dien-vien" },
       { id: "ticket", tab: "dat-ve" },
-      { id: "contact", tab: "lien-he" },
+      { id: "don-vi", tab: "don-vi" },
     ];
 
     const observerOptions = {
@@ -81,13 +81,7 @@ export default function Header() {
 
   // Helper function to get tab index
   const getTabIndex = (tab: string) => {
-    const tabs = [
-      "trang-chu",
-      "ve-chung-toi",
-      "dien-vien",
-      "lien-he",
-      "dat-ve",
-    ];
+    const tabs = ["trang-chu", "ve-chung-toi", "dien-vien", "dat-ve", "don-vi"];
     return tabs.indexOf(tab);
   };
 
@@ -238,7 +232,7 @@ export default function Header() {
 
         <motion.div
           ref={(el) => {
-            tabRefs.current[4] = el;
+            tabRefs.current[3] = el;
           }}
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.2 }}
@@ -252,17 +246,17 @@ export default function Header() {
         </motion.div>
         <motion.div
           ref={(el) => {
-            tabRefs.current[3] = el;
+            tabRefs.current[4] = el;
           }}
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.2 }}
           className="cursor-pointer px-3 py-1 rounded-lg z-20 relative"
           onClick={() => {
-            setSelectedTab("lien-he");
-            scrollToSection("contact");
+            setSelectedTab("don-vi");
+            scrollToSection("don-vi");
           }}
         >
-          Liên hệ
+          Đơn vị
         </motion.div>
       </motion.div>
       {!open && (
@@ -386,15 +380,15 @@ export default function Header() {
               >
                 <div
                   onClick={() => {
-                    setSelectedTab("lien-he");
-                    scrollToSection("contact");
+                    setSelectedTab("don-vi");
+                    scrollToSection("don-vi");
                     setOpen(!open);
                   }}
                   className={`cursor-pointer px-3 py-1 rounded-lg z-20 relative font-font-montserrat ${
-                    selectedTab === "lien-he" ? "bg-[#B8931B]" : ""
+                    selectedTab === "don-vi" ? "bg-[#B8931B]" : ""
                   }`}
                 >
-                  Liên hệ
+                  Đơn vị
                 </div>
               </motion.div>
             </motion.div>

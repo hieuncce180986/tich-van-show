@@ -30,7 +30,7 @@ export default function B3() {
         <div className="relative z-30 h-full max-w-[85rem] flex flex-col items-center justify-center mx-auto">
           <motion.div
             ref={titleRef}
-            className="w-full h-full my-10"
+            className="w-full h-full my-10 backdrop-blur-sm bg-gray-200/5 rounded-full"
             initial={{ opacity: 0, y: -50 }}
             animate={
               isTitleInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }
@@ -48,17 +48,17 @@ export default function B3() {
             <span className="translate-y-1.5">ABOUT US</span>
           </motion.div> */}
             <motion.div
-              className="backdrop-blur-3xl bg-gray-200/5 text-[#FCF9D6] font-font-moncheri text-2xl sm:text-3xl lg:text-4xl flex items-center justify-center rounded-full w-full h-12 sm:h-14 lg:h-[4.5rem] shadow-2xl lg:mx-0"
+              className=" text-[#FCF9D6] font-font-moncheri text-2xl sm:text-3xl lg:text-4xl flex items-center justify-center rounded-full w-full h-12 sm:h-14 lg:h-[4.5rem] shadow-2xl lg:mx-0"
               transition={{ duration: 0.3 }}
             >
               <span className="translate-y-1.5">DIỄN VIÊN</span>
             </motion.div>
           </motion.div>
         </div>
-        <div className="relative hidden lg:block z-30 w-full h-full ">
+        <div className="relative hidden lg:block z-30 w-full h-full">
           <ThreeDCarousel cardH={450} cardW={250} spacingMultiplier={1.2} />
         </div>
-        <div className="relative block lg:hidden z-30 w-full h-full ">
+        <div className="relative block lg:hidden z-30 w-full h-full">
           <ThreeDCarousel cardH={400} cardW={240} spacingMultiplier={1} />
         </div>
       </div>

@@ -125,7 +125,7 @@ export default function B1() {
               Tái hiện hồn văn, đánh thức cảm quan
             </motion.div>
             <motion.div
-              className="flex flex-row items-center justify-center gap-10 lg:pr-40"
+              className="flex flex-row items-center justify-center gap-5 lg:gap-10 lg:pr-40"
               initial={{ opacity: 0, y: 30 }}
               animate={
                 isMainContentInView
@@ -135,7 +135,7 @@ export default function B1() {
               transition={{ duration: 0.6, delay: 1.4 }}
             >
               <motion.div
-                className="flex flex-row items-center justify-center gap-3 bg-[#FCF9D6] text-black rounded-lg h-12 w-52 cursor-pointer"
+                className="flex flex-row items-center justify-center gap-3 bg-[#FCF9D6] text-black rounded-lg h-12 w-60 lg:w-52 cursor-pointer"
                 whileHover={{
                   scale: 1.05,
                   boxShadow: "0 10px 25px rgba(252, 249, 214, 0.3)",
@@ -148,12 +148,12 @@ export default function B1() {
                   stroke="#000000"
                   className="w-8 h-8 -rotate-45"
                 />
-                <div className="text-lg pt-1 font-bold font-font-moncheri">
+                <div className="text-base lg:text-lg pt-1 font-bold font-font-moncheri">
                   Mua vé
                 </div>
               </motion.div>
               <motion.div
-                className="font-font-moncheri pt-1 flex flex-row items-center justify-center gap-2 text-[#FCF9D6] text-xl rounded-lg h-12 w-52 border-2 border-[#FCF9D6] cursor-pointer hover:bg-[#FCF9D6] hover:text-black transition-all duration-300"
+                className="font-font-moncheri pt-1 flex flex-row items-center justify-center gap-2 text-[#FCF9D6] text-base lg:text-xl rounded-lg h-12 w-60 lg:w-52 border-2 border-[#FCF9D6] cursor-pointer hover:bg-[#FCF9D6] hover:text-black transition-all duration-300"
                 whileHover={{
                   scale: 1.05,
                   backgroundColor: "#FCF9D6",
