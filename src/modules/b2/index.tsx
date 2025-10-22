@@ -12,6 +12,8 @@ import pv1 from "../../../public/images/PV-1.jpg";
 import pv2 from "../../../public/images/PV-2-2.jpg";
 import ch1 from "../../../public/images/CH-1.jpg";
 import ch2 from "../../../public/images/CH-2-2.jpg";
+import rope from "../../../public/images/day.png";
+import cloud from "../../../public/images/May.png";
 import { CometCard } from "@/components/ui/comet-card";
 import { motion, useInView } from "framer-motion";
 import "../../styles/styles.css";
@@ -30,10 +32,12 @@ export default function B2() {
   const titleRef = useRef(null);
   const aboutRef = useRef(null);
   const cardsRef = useRef(null);
+  const cloudsRef = useRef(null);
   const swiperRef = useRef<SwiperCore | null>(null);
   const isTitleInView = useInView(titleRef, { once: true, margin: "-100px" });
   const isCardsInView = useInView(cardsRef, { once: true, margin: "-100px" });
   const isAboutInView = useInView(aboutRef, { once: true, margin: "-100px" });
+  const isCloudsInView = useInView(cloudsRef, { once: true, margin: "-200px" });
 
   const handlePrev = () => {
     if (swiperRef.current) {
@@ -208,6 +212,94 @@ export default function B2() {
           <source src="/videos/Flowing.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+      </div>
+      {/* Clouds Container */}
+      <div ref={cloudsRef} className="absolute inset-0 w-full h-full">
+        {/* Right side clouds */}
+        <motion.div
+          className="absolute top-[22%] right-[2%] h-full z-50 cloud-animation-1"
+          initial={{ x: 150, opacity: 0 }}
+          animate={
+            isCloudsInView ? { x: 0, opacity: 1 } : { x: 150, opacity: 0 }
+          }
+          transition={{
+            duration: 1.8,
+            delay: 1.0,
+            ease: "easeOut",
+          }}
+        >
+          <Image
+            src={cloud}
+            alt="cloud"
+            width={1000}
+            height={1000}
+            className="w-full h-24 object-contain scale-x-[-1]"
+          />
+        </motion.div>
+
+        <motion.div
+          className="absolute top-[13%] right-[0%] h-full z-50 cloud-animation-2"
+          initial={{ x: 150, opacity: 0 }}
+          animate={
+            isCloudsInView ? { x: 0, opacity: 1 } : { x: 150, opacity: 0 }
+          }
+          transition={{
+            duration: 1.8,
+            delay: 1.3,
+            ease: "easeOut",
+          }}
+        >
+          <Image
+            src={cloud}
+            alt="cloud"
+            width={1000}
+            height={1000}
+            className="w-full h-20 object-contain scale-x-[-1] blur-[1.5px]"
+          />
+        </motion.div>
+
+        {/* Left side clouds */}
+        <motion.div
+          className="absolute top-[53%] left-[2%] h-full z-50 cloud-animation-3"
+          initial={{ x: -200, opacity: 0 }}
+          animate={
+            isCloudsInView ? { x: 0, opacity: 1 } : { x: -200, opacity: 0 }
+          }
+          transition={{
+            duration: 1.5,
+            delay: 1.0,
+            ease: "easeOut",
+          }}
+        >
+          <Image
+            src={cloud}
+            alt="cloud"
+            width={1000}
+            height={1000}
+            className="w-full h-24 object-contain "
+          />
+        </motion.div>
+
+        <motion.div
+          className="absolute top-[18%] left-[0%] h-full z-30 cloud-animation-4"
+          initial={{ x: -150, opacity: 0 }}
+          animate={
+            isCloudsInView ? { x: 0, opacity: 1 } : { x: -150, opacity: 0 }
+          }
+          transition={{
+            duration: 1.8,
+            delay: 1.3,
+            ease: "easeOut",
+          }}
+        >
+          <Image
+            src={cloud}
+            alt="cloud"
+            width={1000}
+            height={1000}
+            className="w-full h-20 object-contain  blur-[1.5px]"
+          />
+        </motion.div>
       </div>
       <div className="relative z-30 h-full max-w-[85rem] flex flex-col items-center justify-center mx-auto">
         <motion.div

@@ -29,10 +29,12 @@ export default function Header() {
   });
 
   const [selectedTab, setSelectedTab] = useState("trang-chu");
+  const [userSelectedTab, setUserSelectedTab] = useState(false);
   const tabRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [tabPositions, setTabPositions] = useState<
     { x: number; width: number }[]
   >([]);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Intersection Observer for scroll-based tab selection
   useEffect(() => {
@@ -51,14 +53,17 @@ export default function Header() {
     };
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const section = sections.find((s) => s.id === entry.target.id);
-          if (section) {
-            setSelectedTab(section.tab);
+      // Only update tab if user hasn't manually selected one
+      if (!userSelectedTab) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const section = sections.find((s) => s.id === entry.target.id);
+            if (section) {
+              setSelectedTab(section.tab);
+            }
           }
-        }
-      });
+        });
+      }
     };
 
     const observer = new IntersectionObserver(
@@ -77,12 +82,41 @@ export default function Header() {
     return () => {
       observer.disconnect();
     };
+  }, [userSelectedTab]);
+
+  // Reset user interaction flag after scrolling stops
+  useEffect(() => {
+    const handleScroll = () => {
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+
+      scrollTimeoutRef.current = setTimeout(() => {
+        setUserSelectedTab(false);
+      }, 1000); // Reset after 1 second of no scrolling
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
   }, []);
 
   // Helper function to get tab index
   const getTabIndex = (tab: string) => {
     const tabs = ["trang-chu", "ve-chung-toi", "dien-vien", "dat-ve", "don-vi"];
     return tabs.indexOf(tab);
+  };
+
+  // Helper function to handle tab clicks
+  const handleTabClick = (tab: string, sectionId: string) => {
+    setSelectedTab(tab);
+    setUserSelectedTab(true);
+    scrollToSection(sectionId);
   };
 
   // Update tab positions when component mounts or selectedTab changes
@@ -194,10 +228,7 @@ export default function Header() {
           className={`cursor-pointer px-3 pt-1 rounded-lg z-20 relative ${
             selectedTab === "trang-chu" ? "bg-[#B8931B]" : ""
           }`}
-          onClick={() => {
-            setSelectedTab("trang-chu");
-            scrollToSection("home");
-          }}
+          // onClick={() => handleTabClick("trang-chu", "home")}
         >
           Trang chủ
         </motion.div>
@@ -208,10 +239,7 @@ export default function Header() {
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.2 }}
           className="cursor-pointer px-3 py-1 rounded-lg z-20 relative"
-          onClick={() => {
-            setSelectedTab("ve-chung-toi");
-            scrollToSection("about");
-          }}
+          // onClick={() => handleTabClick("ve-chung-toi", "about")}
         >
           Về chúng tôi
         </motion.div>
@@ -222,10 +250,7 @@ export default function Header() {
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.2 }}
           className="cursor-pointer px-3 py-1 rounded-lg z-20 relative"
-          onClick={() => {
-            setSelectedTab("dien-vien");
-            scrollToSection("actor");
-          }}
+          // onClick={() => handleTabClick("dien-vien", "actor")}
         >
           Diễn viên
         </motion.div>
@@ -237,10 +262,7 @@ export default function Header() {
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.2 }}
           className="cursor-pointer px-3 py-1 rounded-lg z-20 relative"
-          onClick={() => {
-            setSelectedTab("dat-ve");
-            scrollToSection("ticket");
-          }}
+          // onClick={() => handleTabClick("dat-ve", "ticket")}
         >
           Đặt vé
         </motion.div>
@@ -251,10 +273,7 @@ export default function Header() {
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.2 }}
           className="cursor-pointer px-3 py-1 rounded-lg z-20 relative"
-          onClick={() => {
-            setSelectedTab("don-vi");
-            scrollToSection("don-vi");
-          }}
+          // onClick={() => handleTabClick("don-vi", "don-vi")}
         >
           Đơn vị
         </motion.div>
@@ -302,8 +321,7 @@ export default function Header() {
               >
                 <div
                   onClick={() => {
-                    setSelectedTab("trang-chu");
-                    scrollToSection("home");
+                    handleTabClick("trang-chu", "home");
                     setOpen(!open);
                   }}
                   className={`cursor-pointer px-3 py-1 rounded-lg z-20 relative font-font-montserrat ${
@@ -321,8 +339,7 @@ export default function Header() {
               >
                 <div
                   onClick={() => {
-                    setSelectedTab("ve-chung-toi");
-                    scrollToSection("about");
+                    handleTabClick("ve-chung-toi", "about");
                     setOpen(!open);
                   }}
                   className={`cursor-pointer px-3 py-1 rounded-lg z-20 relative font-font-montserrat ${
@@ -340,8 +357,7 @@ export default function Header() {
               >
                 <div
                   onClick={() => {
-                    setSelectedTab("dien-vien");
-                    scrollToSection("actor");
+                    handleTabClick("dien-vien", "actor");
                     setOpen(!open);
                   }}
                   className={`cursor-pointer px-3 py-1 rounded-lg z-20 relative font-font-montserrat ${
@@ -360,8 +376,7 @@ export default function Header() {
               >
                 <div
                   onClick={() => {
-                    setSelectedTab("dat-ve");
-                    scrollToSection("ticket");
+                    handleTabClick("dat-ve", "ticket");
                     setOpen(!open);
                   }}
                   className={`cursor-pointer px-3 py-1 rounded-lg z-20 relative font-font-montserrat ${
@@ -380,8 +395,7 @@ export default function Header() {
               >
                 <div
                   onClick={() => {
-                    setSelectedTab("don-vi");
-                    scrollToSection("don-vi");
+                    handleTabClick("don-vi", "don-vi");
                     setOpen(!open);
                   }}
                   className={`cursor-pointer px-3 py-1 rounded-lg z-20 relative font-font-montserrat ${
