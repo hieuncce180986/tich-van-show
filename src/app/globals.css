@@ -176,3 +176,13 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Background clip text fallback */
+@supports not (background-clip: text) {
+  .bg-clip-text-fallback {
+    background: none !important;
+    color: white !important;
+    -webkit-text-fill-color: white !important;
+    text-fill-color: white !important;
+  }
+}

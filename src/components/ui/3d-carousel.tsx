@@ -18,37 +18,37 @@ const FALLBACK =
 // ];
 const DEFAULT_IMAGES = [
   {
-    src: "https://e7.pngegg.com/pngimages/434/127/png-clipart-mystery-mysterious-man-s-woman-silhouette-thumbnail.png",
-    name: "Actor 1",
+    src: "https://res.cloudinary.com/dx1ejni0o/image/upload/v1761459233/tich-van/dtscggc0iytao9yzt0qo.jpg",
+    name: "Bảo Duy",
   },
   {
-    src: "https://e7.pngegg.com/pngimages/434/127/png-clipart-mystery-mysterious-man-s-woman-silhouette-thumbnail.png",
-    name: "Actor 2",
+    src: "https://res.cloudinary.com/dx1ejni0o/image/upload/v1761459265/tich-van/osrjg1jqzrr0euozzfdw.jpg",
+    name: "Bội Bội",
   },
   {
-    src: "https://e7.pngegg.com/pngimages/434/127/png-clipart-mystery-mysterious-man-s-woman-silhouette-thumbnail.png",
-    name: "Actor 3",
+    src: "https://res.cloudinary.com/dx1ejni0o/image/upload/v1761459282/tich-van/add3cm93ivcmzwcwr7jr.jpg",
+    name: "Minh Thi",
   },
   {
-    src: "https://e7.pngegg.com/pngimages/434/127/png-clipart-mystery-mysterious-man-s-woman-silhouette-thumbnail.png",
-    name: "Actor 4",
+    src: "https://res.cloudinary.com/dx1ejni0o/image/upload/v1761459299/tich-van/i1latqaoz0cvptk2q7p0.jpg",
+    name: "Quỳnh Vy",
   },
   {
-    src: "https://e7.pngegg.com/pngimages/434/127/png-clipart-mystery-mysterious-man-s-woman-silhouette-thumbnail.png",
-    name: "Actor 5",
+    src: "https://res.cloudinary.com/dx1ejni0o/image/upload/v1761459233/tich-van/dtscggc0iytao9yzt0qo.jpg",
+    name: "Bảo Duy",
   },
-  // {
-  //   src: "https://e7.pngegg.com/pngimages/434/127/png-clipart-mystery-mysterious-man-s-woman-silhouette-thumbnail.png",
-  //   name: "Actor 6",
-  // },
-  // {
-  //   src: "https://e7.pngegg.com/pngimages/434/127/png-clipart-mystery-mysterious-man-s-woman-silhouette-thumbnail.png",
-  //   name: "Actor 7",
-  // },
-  // {
-  //   src: "https://e7.pngegg.com/pngimages/434/127/png-clipart-mystery-mysterious-man-s-woman-silhouette-thumbnail.png",
-  //   name: "Actor 8",
-  // },
+  {
+    src: "https://res.cloudinary.com/dx1ejni0o/image/upload/v1761459265/tich-van/osrjg1jqzrr0euozzfdw.jpg",
+    name: "Bội Bội",
+  },
+  {
+    src: "https://res.cloudinary.com/dx1ejni0o/image/upload/v1761459282/tich-van/add3cm93ivcmzwcwr7jr.jpg",
+    name: "Minh Thi",
+  },
+  {
+    src: "https://res.cloudinary.com/dx1ejni0o/image/upload/v1761459299/tich-van/i1latqaoz0cvptk2q7p0.jpg",
+    name: "Quỳnh Vy",
+  },
 ];
 
 /* 2️⃣  Config ————————————————————————— */
@@ -103,7 +103,7 @@ const Card = React.memo(({ src, transform, cardW, cardH, name }: CardProps) => (
       />
     </div>
     <div
-      className="text-white text-xl font-font-montserrat w-full text-center pt-3"
+      className="text-white text-md font-font-moncheri w-full text-center pt-3"
       style={{ backfaceVisibility: "hidden" }}
     >
       {name}

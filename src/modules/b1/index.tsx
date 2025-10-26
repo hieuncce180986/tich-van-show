@@ -1,11 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import logo from "../../../public/images/TịchVanTrang.png";
 import main from "../../../public/images/TịchVan.png";
 import { Ticket } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import "@/styles/styles.css";
 
 export default function B1() {
@@ -66,7 +65,10 @@ export default function B1() {
           playsInline
           className="w-full h-full object-cover"
         >
-          <source src="/videos/Trailer.mp4" type="video/mp4" />
+          <source
+            src="https://res.cloudinary.com/dx1ejni0o/video/upload/v1761460754/tich-van/sx18e7lkyvlrkznaj04r.mp4"
+            type="video/mp4"
+          />
           Your browser does not support the video tag.
         </video>
       </div>

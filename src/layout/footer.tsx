@@ -11,11 +11,11 @@ const Footer = () => {
 
   return (
     <div id="contact" className="text-black relative">
-      <div className="absolute lg:bottom-[17%] bottom-[00%] left-0 w-full h-40 lg:h-72 bg-gradient-to-t from-black to-transparent z-[70]"></div>
-      <div className="relative h-full w-full overflow-hidden flex items-center justify-center">
+      <div className="absolute lg:bottom-[17%] bottom-[0%] left-0 w-full h-40 lg:h-72 bg-gradient-to-t from-black to-transparent z-[70]"></div>
+      <div className="relative lg:h-[400px] h-[120px] w-full overflow-hidden flex items-center justify-center">
         <motion.div
           ref={footerRef}
-          className="font-font-1ftv-vip-boogo text-[55px] lg:text-[235px] pt-10 text-transparent bg-clip-text"
+          className="font-font-1ftv-vip-boogo text-[55px] lg:text-[235px] pt-10 text-white bg-clip-text-fallback h-full flex items-center justify-center"
           style={{
             backgroundImage: `url(${bgImg.src})`,
             backgroundSize: "cover",
@@ -23,7 +23,8 @@ const Footer = () => {
             WebkitBackgroundClip: "text",
             backgroundClip: "text",
             WebkitTextFillColor: "transparent",
-            // textFillColor: "transparent",
+            // Fallback for browsers that don't support background-clip: text
+            color: "white",
           }}
           initial={{ opacity: 0, scale: 0.5 }}
           animate={

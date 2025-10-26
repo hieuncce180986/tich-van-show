@@ -113,12 +113,12 @@ export default function B4() {
     fetchSchedule();
 
     // Set up interval to fetch every 5 seconds
-    // const interval = setInterval(fetchSchedule, 10000);
+    const interval = setInterval(fetchSchedule, 10000);
 
-    // // Cleanup interval on component unmount
-    // return () => {
-    //   clearInterval(interval);
-    // };
+    // Cleanup interval on component unmount
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   // Effect to adjust quantity when schedule changes
@@ -331,7 +331,10 @@ export default function B4() {
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src="/videos/Flowing.mp4" type="video/mp4" />
+            <source
+              src="https://res.cloudinary.com/dx1ejni0o/video/upload/v1761461775/tich-van/k6qld0zknqw2zzsonqbg.mp4"
+              type="video/mp4"
+            />
             Your browser does not support the video tag.
           </video>
         </div>

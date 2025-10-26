@@ -23,7 +23,10 @@ export default function B3() {
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src="/videos/Flowing.mp4" type="video/mp4" />
+            <source
+              src="https://res.cloudinary.com/dx1ejni0o/video/upload/v1761461775/tich-van/k6qld0zknqw2zzsonqbg.mp4"
+              type="video/mp4"
+            />
             Your browser does not support the video tag.
           </video>
         </div>
@@ -56,10 +59,10 @@ export default function B3() {
           </motion.div>
         </div>
         <div className="relative hidden lg:block z-30 w-full h-full">
-          <ThreeDCarousel cardH={450} cardW={250} spacingMultiplier={1.2} />
+          <ThreeDCarousel cardH={470} cardW={270} spacingMultiplier={1.5} />
         </div>
         <div className="relative block lg:hidden z-30 w-full h-full">
-          <ThreeDCarousel cardH={400} cardW={240} spacingMultiplier={1} />
+          <ThreeDCarousel cardH={300} cardW={180} spacingMultiplier={1} />
         </div>
       </div>
     </div>

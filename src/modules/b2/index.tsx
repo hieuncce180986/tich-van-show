@@ -209,7 +209,10 @@ export default function B2() {
           playsInline
           className="w-full h-full object-cover"
         >
-          <source src="/videos/Flowing.mp4" type="video/mp4" />
+          <source
+            src="https://res.cloudinary.com/dx1ejni0o/video/upload/v1761461775/tich-van/k6qld0zknqw2zzsonqbg.mp4"
+            type="video/mp4"
+          />
           Your browser does not support the video tag.
         </video>
       </div>
@@ -233,7 +236,7 @@ export default function B2() {
             alt="cloud"
             width={1000}
             height={1000}
-            className="w-full h-24 object-contain scale-x-[-1]"
+            className="w-full h-16 lg:h-24 object-contain scale-x-[-1]"
           />
         </motion.div>
 
@@ -254,7 +257,7 @@ export default function B2() {
             alt="cloud"
             width={1000}
             height={1000}
-            className="w-full h-20 object-contain scale-x-[-1] blur-[1.5px]"
+            className="w-full h-12 lg:h-20 object-contain scale-x-[-1] blur-[1.5px]"
           />
         </motion.div>
 
@@ -276,7 +279,7 @@ export default function B2() {
             alt="cloud"
             width={1000}
             height={1000}
-            className="w-full h-24 object-contain "
+            className="w-full h-20 lg:h-24 object-contain "
           />
         </motion.div>
 
@@ -297,7 +300,7 @@ export default function B2() {
             alt="cloud"
             width={1000}
             height={1000}
-            className="w-full h-20 object-contain  blur-[1.5px]"
+            className="w-full h-16 lg:h-20 object-contain  blur-[1.5px]"
           />
         </motion.div>
       </div>

@@ -14,7 +14,7 @@ export default function B5() {
   });
 
   return (
-    <div className="text-white" id="don-vi">
+    <div className="text-white " id="don-vi">
       <div className="text-white relative py-20">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black via-transparent to-black z-20"></div>
         <div className="absolute inset-0 w-full h-full z-10">
@@ -25,7 +25,10 @@ export default function B5() {
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src="/videos/Flowing.mp4" type="video/mp4" />
+            <source
+              src="https://res.cloudinary.com/dx1ejni0o/video/upload/v1761461775/tich-van/k6qld0zknqw2zzsonqbg.mp4"
+              type="video/mp4"
+            />
             Your browser does not support the video tag.
           </video>
         </div>
