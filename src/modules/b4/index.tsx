@@ -43,7 +43,7 @@ interface FormErrors {
 
 export default function B4() {
   const { toast } = useToast();
-  const MORNING_AMOUNT_OF_TICKET = 10;
+  const MORNING_AMOUNT_OF_TICKET = 30;
   const AFTERNOON_AMOUNT_OF_TICKET = 30;
 
   const formRef = useRef(null);
@@ -117,12 +117,12 @@ export default function B4() {
     fetchSchedule();
 
     // // Set up interval to fetch every 5 seconds
-    // const interval = setInterval(fetchSchedule, 10000);
+    const interval = setInterval(fetchSchedule, 10000);
 
-    // // Cleanup interval on component unmount
-    // return () => {
-    //   clearInterval(interval);
-    // };
+    // Cleanup interval on component unmount
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   // Effect to adjust quantity when schedule changes
