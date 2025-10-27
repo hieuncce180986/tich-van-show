@@ -578,7 +578,7 @@ export default function B4() {
                   </div>
                 </div>
 
-                <div className="flex flex-row items-center justify-between gap-3 pt-3">
+                <div className="flex flex-col lg:flex-row item-start lg:items-center justify-between gap-3 pt-3">
                   <label className="block text-white font-medium mb-2">
                     Giá vé<span className="text-white">: 69.000 VNĐ/vé</span>
                   </label>
