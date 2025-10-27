@@ -143,7 +143,11 @@ export function QRDialog({ total }: { total: string }) {
           </div>
         </div>
         <DialogClose>
-          <Button color="primary" size="lg">
+          <Button
+            color="white"
+            size="lg"
+            className="bg-[#B8931B] text-white hover:bg-[#B8931B] hover:opacity-80 hover:text-white"
+          >
             Đóng
           </Button>
         </DialogClose>
