@@ -18,7 +18,7 @@ import { Copy } from "lucide-react";
 import { useCopyToClipboard } from "usehooks-ts";
 import toast from "react-hot-toast";
 
-export function QRDialog() {
+export function QRDialog({ total }: { total: string }) {
   const [selectedOption, setSelectedOption] = useState<string>("option1");
   const [, copy] = useCopyToClipboard();
 
@@ -29,7 +29,7 @@ export function QRDialog() {
           type="submit"
           color="primary"
           size="lg"
-          className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-3"
+          className="w-full bg-gradient-to-r from-[#B8931B] via-[#c1a341] to-[#caa323] hover:from-[#ddbc4e] hover:to-[#B8931B] text-white font-semibold py-3"
         >
           Mã chuyển khoản
         </Button>
@@ -89,11 +89,16 @@ export function QRDialog() {
               <div>
                 <div>Chú thích:</div>
                 <ul>
-                  <li>Show sáng: [Tên]_show1</li>
-                  <li>Show chiều: [Tên]_show2</li>
+                  <li>Show sáng: [Tên]_slot1</li>
+                  <li>Show chiều: [Tên]_slot2</li>
                 </ul>
               </div>
-              <div>Số tiền: 69.000 VNĐ</div>
+              <div className="">
+                Tổng tiền: &nbsp;
+                <span className="text-white bg-[#B8931B] px-2 py-1 rounded-md">
+                  {total}
+                </span>{" "}
+              </div>
             </div>
           ) : (
             <div className="flex flex-col gap-3 text-white">
@@ -115,11 +120,16 @@ export function QRDialog() {
               <div>
                 <div>Chú thích:</div>
                 <ul>
-                  <li>Show sáng: [Tên]_show1</li>
-                  <li>Show chiều: [Tên]_show2</li>
+                  <li>Show sáng: [Tên]_slot1</li>
+                  <li>Show chiều: [Tên]_slot2</li>
                 </ul>
               </div>
-              <div>Số tiền: 69.000 VNĐ</div>
+              <div className="">
+                Tổng tiền: &nbsp;
+                <span className="text-white bg-[#B8931B] px-2 py-1 rounded-md">
+                  {total}
+                </span>{" "}
+              </div>
             </div>
           )}
           <div className="flex justify-end items-center">

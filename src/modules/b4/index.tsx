@@ -43,7 +43,7 @@ interface FormErrors {
 
 export default function B4() {
   const { toast } = useToast();
-  const MORNING_AMOUNT_OF_TICKET = 30;
+  const MORNING_AMOUNT_OF_TICKET = 10;
   const AFTERNOON_AMOUNT_OF_TICKET = 30;
 
   const formRef = useRef(null);
@@ -64,6 +64,9 @@ export default function B4() {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [scheduleMorning, setScheduleMorning] = useState<any>(null);
   const [scheduleAfternoon, setScheduleAfternoon] = useState<any>(null);
+  const [submissionStatus, setSubmissionStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
 
   // Cleanup effect to revoke object URLs
   useEffect(() => {
@@ -111,7 +114,7 @@ export default function B4() {
     };
 
     // Initial fetch
-    // fetchSchedule();
+    fetchSchedule();
 
     // // Set up interval to fetch every 5 seconds
     // const interval = setInterval(fetchSchedule, 10000);
@@ -189,6 +192,10 @@ export default function B4() {
     if (errors[field]) {
       setErrors((prev) => ({ ...prev, [field]: undefined }));
     }
+    // Clear submission status when user starts typing
+    if (submissionStatus !== "idle") {
+      setSubmissionStatus("idle");
+    }
   };
 
   const handleQuantityChange = (delta: number) => {
@@ -201,6 +208,10 @@ export default function B4() {
     // Clear error when user changes quantity
     if (errors.quantity) {
       setErrors((prev) => ({ ...prev, quantity: undefined }));
+    }
+    // Clear submission status when user changes quantity
+    if (submissionStatus !== "idle") {
+      setSubmissionStatus("idle");
     }
   };
 
@@ -226,6 +237,10 @@ export default function B4() {
       setImagePreview(previewUrl);
       setFormData((prev) => ({ ...prev, image: file }));
       setErrors((prev) => ({ ...prev, image: undefined }));
+      // Clear submission status when user uploads new image
+      if (submissionStatus !== "idle") {
+        setSubmissionStatus("idle");
+      }
     }
   };
 
@@ -306,8 +321,9 @@ export default function B4() {
         });
         setImagePreview(null);
         setErrors({});
+        setSubmissionStatus("success");
       } else {
-        alert("Có lỗi xảy ra, vui lòng thử lại!");
+        setSubmissionStatus("error");
       }
     } catch (error) {
       console.error("Form submission error:", error);
@@ -315,9 +331,18 @@ export default function B4() {
         ...prev,
         image: "Có lỗi xảy ra khi xử lý ảnh. Vui lòng thử lại.",
       }));
+      setSubmissionStatus("error");
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const formatVND = (money) => {
+    const number = Number(money);
+    if (isNaN(number)) {
+      return "Invalid number";
+    }
+    return `${number.toLocaleString("vi-VN")} VNĐ`;
   };
 
   return (
@@ -356,18 +381,21 @@ export default function B4() {
                   Đăng Ký Tham Gia
                 </h2>
                 <p className="text-white/80">
-                  Vui lòng điền thông tin để đăng ký tham gia chương trình
+                  Vui lòng điền thông tin để đăng ký tham gia Hoa Độc Điền Trang
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} noValidate className="space-y-6">
+              <form onSubmit={handleSubmit} noValidate className="space-y-3">
                 {/* Name Field */}
                 <div>
+                  <label className="block text-white font-medium mb-2">
+                    Họ và tên <span className="text-red-400">*</span>
+                  </label>
                   <input
-                    placeholder="Nhập họ và tên của bạn"
+                    placeholder="Nhập họ và tên"
                     value={formData.name}
                     onChange={(e) => handleInputChange("name", e.target.value)}
-                    className="text-white w-full p-2 bg-white/10 border-white/20 hover:bg-white/15 focus:outline-none focus:ring-0 focus:border-none focus:ring-offset-0"
+                    className="text-white w-full p-2 bg-white/10 border-white/20 hover:bg-white/15 focus:outline-none focus:ring-0 focus:border-none focus:ring-offset-0 rounded-md"
                   />
                   {errors.name && (
                     <p className="text-red-400 text-sm mt-1">{errors.name}</p>
@@ -376,12 +404,15 @@ export default function B4() {
 
                 {/* Email Field */}
                 <div>
+                  <label className="block text-white font-medium mb-2">
+                    Email <span className="text-red-400">*</span>
+                  </label>
                   <input
                     type="email"
                     placeholder="Nhập địa chỉ email"
                     value={formData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
-                    className="text-white w-full p-2 bg-white/10 border-white/20 hover:bg-white/15 focus:outline-none focus:ring-0 focus:border-none focus:ring-offset-0"
+                    className="text-white w-full p-2 bg-white/10 border-white/20 hover:bg-white/15 focus:outline-none focus:ring-0 focus:border-none focus:ring-offset-0 rounded-md"
                   />
                   {errors.email && (
                     <p className="text-red-400 text-sm mt-1">{errors.email}</p>
@@ -390,12 +421,15 @@ export default function B4() {
 
                 {/* Phone Field */}
                 <div>
+                  <label className="block text-white font-medium mb-2">
+                    Số điện thoại <span className="text-red-400">*</span>
+                  </label>
                   <input
                     type="tel"
                     placeholder="Nhập số điện thoại"
                     value={formData.phone}
                     onChange={(e) => handleInputChange("phone", e.target.value)}
-                    className="text-white w-full p-2 bg-white/10 border-white/20 hover:bg-white/15 focus:outline-none focus:ring-0 focus:border-none focus:ring-offset-0"
+                    className="text-white w-full p-2 bg-white/10 border-white/20 hover:bg-white/15 focus:outline-none focus:ring-0 focus:border-none focus:ring-offset-0 rounded-md"
                   />
                   {errors.phone && (
                     <p className="text-red-400 text-sm mt-1">{errors.phone}</p>
@@ -404,8 +438,11 @@ export default function B4() {
 
                 {/* Schedule Field */}
                 <div>
+                  <label className="block text-white font-medium mb-2">
+                    Suất chiếu <span className="text-red-400">*</span>
+                  </label>
                   <Select
-                    placeholder="Chọn suất chiếu phù hợp"
+                    placeholder="Chọn suất chiếu"
                     selectedKeys={formData.schedule ? [formData.schedule] : []}
                     onSelectionChange={(keys) => {
                       const selectedKey = Array.from(keys)[0] as string;
@@ -415,7 +452,8 @@ export default function B4() {
                     errorMessage={errors.schedule}
                     // startContent={<Calendar className="w-4 h-4 text-gray-400" />}
                     classNames={{
-                      trigger: "bg-white/10 border-white/20 hover:bg-white/15",
+                      trigger:
+                        "bg-white/10 border-white/20 hover:bg-white/15 rounded-md",
                       value: "text-white",
                       label: "text-white font-medium",
                       errorMessage: "text-red-400 text-sm mt-1",
@@ -525,7 +563,7 @@ export default function B4() {
                         input:
                           "text-white placeholder:text-white/60 text-center",
                         mainWrapper:
-                          "bg-white/10 border-white/20 hover:bg-white/15 focus:outline-none focus:ring-0 focus:border-none",
+                          "bg-white/10 border-white/20 hover:bg-white/15 focus:outline-none focus:ring-0 focus:border-none rounded-md",
                         label: "text-white font-medium",
                       }}
                     />
@@ -538,6 +576,20 @@ export default function B4() {
                       <Plus className="w-4 h-4 text-white" />
                     </button>
                   </div>
+                </div>
+
+                <div className="flex flex-row items-center justify-between gap-3 pt-3">
+                  <label className="block text-white font-medium mb-2">
+                    Giá vé<span className="text-white">: 69.000 VNĐ/vé</span>
+                  </label>
+
+                  <label className="block text-white font-medium mb-2">
+                    Tổng tiền:{" "}
+                    <span className="text-white bg-[#B8931B] px-2 py-1 rounded-md">
+                      {" "}
+                      {formatVND(formData.quantity * 69000)}
+                    </span>
+                  </label>
                 </div>
 
                 {/* Image Upload Field */}
@@ -611,7 +663,23 @@ export default function B4() {
                   )}
                 </div>
                 <div className="pt-4 relative">
-                  <QRDialog />
+                  <QRDialog total={formatVND(formData.quantity * 69000)} />
+                </div>
+
+                <div className="pt-4 text-white text-sm">
+                  * Lưu ý:
+                  <br />- Sau khi đăng kí thành công hãy kiểm tra email để theo
+                  dõi trạng thái vé. Nếu không thấy email trong hộp thư chính
+                  vui lòng kiểm tra thư rác.
+                  <br />- Nếu có thắc mắc vui lòng liên hệ:
+                  <br /> &nbsp; Admin:{" "}
+                  <a
+                    href="https://zalo.me/0375475362"
+                    target="_blank"
+                    className="text-[#B8931B] font-bold"
+                  >
+                    Đặng Phước Vinh
+                  </a>
                 </div>
 
                 {/* Submit Button */}
@@ -620,7 +688,7 @@ export default function B4() {
                     type="submit"
                     color="primary"
                     size="lg"
-                    className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-3"
+                    className="w-full bg-gradient-to-r from-[#B8931B] via-[#c1a341] to-[#caa323] hover:from-[#ddbc4e] hover:to-[#B8931B] text-white font-semibold py-3 rounded-md"
                     isLoading={isSubmitting}
                   >
                     {!isSubmitting ? null : (
@@ -629,6 +697,20 @@ export default function B4() {
                     {isSubmitting ? "Đang đăng ký..." : "Đăng Ký Tham Gia"}
                   </Button>
                 </div>
+                {/* Success Message */}
+                {submissionStatus === "success" && (
+                  <div className="pt-4 text-base w-full text-center text-green-500">
+                    Đăng ký thành công. Hãy kiểm tra email để theo dõi trạng
+                    thái vé.
+                  </div>
+                )}
+
+                {/* Error Message */}
+                {submissionStatus === "error" && (
+                  <div className="pt-4 text-base w-full text-center text-red-500">
+                    Đăng ký thất bại. Vui lòng thử lại.
+                  </div>
+                )}
               </form>
             </motion.div>
           </div>
