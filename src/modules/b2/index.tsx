@@ -201,6 +201,7 @@ export default function B2() {
   return (
     <div className="text-white relative py-20 bg-white" id="about">
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black via-transparent to-black z-20"></div>
+      {/* <div className="lg:hidden block absolute inset-0 w-full h-full bg-black/80 z-20"></div> */}
       <div className="absolute inset-0 w-full h-full z-10">
         <video
           autoPlay
@@ -421,20 +422,22 @@ export default function B2() {
 
         <motion.div
           ref={aboutRef}
-          className="backdrop-blur-3xl bg-gray-200/5 text-[#FCF9D6] font-font-montserrat text-sm sm:text-base lg:text-lg flex items-center justify-center rounded-lg w-full h-full shadow-2xl py-3 sm:py-4 lg:py-5 mt-4 sm:mt-5 lg:mt-7 mx-4"
+          className="px-5 lg:px-0"
           initial={{ opacity: 0, y: 50 }}
           animate={isAboutInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.3 }}
         >
-          <span className="px-3 sm:px-4 lg:px-5 text-justify leading-relaxed">
-            Tịch Văn là show nghệ thuật kể chuyện qua hình ảnh và sân khấu, lấy
-            cảm hứng từ những tác phẩm văn học Việt Nam. Mỗi vở diễn mang đến
-            trải nghiệm đa giác quan — nơi âm thanh, ánh sáng và cảm xúc giao
-            hòa, đúng với tinh thần &ldquo;Tái hiện hồn văn, đánh thức cảm
-            quan&rdquo;. Chúng tôi mong muốn góp phần lan tỏa giá trị văn hóa và
-            tôn vinh vẻ đẹp của văn học Việt Nam qua ngôn ngữ của sân khấu đương
-            đại.
-          </span>
+          <div className="backdrop-blur-3xl bg-gray-200/5 text-[#FCF9D6] font-font-montserrat text-sm sm:text-base lg:text-lg flex items-center justify-center rounded-lg w-full h-full shadow-2xl py-3 sm:py-4 lg:py-5 mt-4 sm:mt-5 lg:mt-7">
+            <span className="px-3 sm:px-4 lg:px-5 text-justify leading-relaxed">
+              Tịch Văn là show nghệ thuật kể chuyện qua hình ảnh và sân khấu,
+              lấy cảm hứng từ những tác phẩm văn học Việt Nam. Mỗi vở diễn mang
+              đến trải nghiệm đa giác quan — nơi âm thanh, ánh sáng và cảm xúc
+              giao hòa, đúng với tinh thần &ldquo;Tái hiện hồn văn, đánh thức
+              cảm quan&rdquo;. Chúng tôi mong muốn góp phần lan tỏa giá trị văn
+              hóa và tôn vinh vẻ đẹp của văn học Việt Nam qua ngôn ngữ của sân
+              khấu đương đại.
+            </span>
+          </div>
         </motion.div>
       </div>
     </div>

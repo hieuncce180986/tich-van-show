@@ -14,10 +14,10 @@ export default function B5() {
   });
 
   return (
-    <div className="text-white " id="don-vi">
+    <div className="text-white" id="don-vi">
       <div className="text-white relative py-20">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black via-transparent to-black z-20"></div>
-        <div className="absolute inset-0 w-full h-full z-10">
+        <div className="hidden lg:block absolute inset-0 w-full h-full z-10">
           <video
             autoPlay
             muted
@@ -74,14 +74,14 @@ export default function B5() {
                 alt="SPONSOR_1"
                 width={1000}
                 height={1000}
-                className="w-full h-20 lg:h-28 object-contain"
+                className="w-full h-24 lg:h-28 object-contain"
               />
               <Image
                 src={IMAGES.SPONSOR_2}
                 alt="SPONSOR_1"
                 width={1000}
                 height={1000}
-                className="w-full h-20 lg:h-28 object-contain"
+                className="w-full h-24 lg:h-28 object-contain"
               />
             </motion.div>
           </motion.div>
@@ -118,28 +118,28 @@ export default function B5() {
                 alt="SPONSOR_1"
                 width={1000}
                 height={1000}
-                className="w-full h-28 lg:h-28 object-contain"
+                className="w-full h-36 lg:h-28 object-contain"
               />
               <Image
                 src={IMAGES.SPONSOR_4}
                 alt="SPONSOR_1"
                 width={1000}
                 height={1000}
-                className="w-full h-28 lg:h-28 object-contain"
+                className="w-full h-36 lg:h-28 object-contain"
               />
               <Image
                 src={IMAGES.SPONSOR_5}
                 alt="SPONSOR_1"
                 width={1000}
                 height={1000}
-                className="w-full h-28 lg:h-28 object-contain"
+                className="w-full h-36 lg:h-28 object-contain"
               />
               <Image
                 src={IMAGES.SPONSOR_6}
                 alt="SPONSOR_1"
                 width={1000}
                 height={1000}
-                className="w-full h-28 lg:h-28 object-contain"
+                className="w-full h-36 lg:h-28 object-contain"
               />
             </motion.div>
           </motion.div>

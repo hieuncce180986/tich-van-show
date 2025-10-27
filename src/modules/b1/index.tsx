@@ -52,6 +52,10 @@ export default function B1() {
     return () => window.removeEventListener("resize", updatePositions);
   }, [selectedTab]);
 
+  const scrollToSection = (sectionId: string) => {
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div className="text-white relative" id="home">
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black z-20"></div>
@@ -144,6 +148,7 @@ export default function B1() {
                 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
+                onClick={() => scrollToSection("ticket")}
               >
                 <Ticket
                   fill="#000000"
@@ -163,6 +168,7 @@ export default function B1() {
                 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
+                onClick={() => scrollToSection("about")}
               >
                 Thông tin
               </motion.div>

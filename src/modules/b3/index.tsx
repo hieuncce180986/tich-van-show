@@ -30,7 +30,7 @@ export default function B3() {
             Your browser does not support the video tag.
           </video>
         </div>
-        <div className="relative z-30 h-full max-w-[85rem] flex flex-col items-center justify-center mx-auto">
+        <div className="relative z-30 h-full max-w-[85rem] flex flex-col items-center justify-center mx-auto px-5 lg:px-0">
           <motion.div
             ref={titleRef}
             className="w-full h-full my-10 backdrop-blur-sm bg-gray-200/5 rounded-full"
@@ -50,11 +50,10 @@ export default function B3() {
           >
             <span className="translate-y-1.5">ABOUT US</span>
           </motion.div> */}
-            <motion.div
-              className=" text-[#FCF9D6] font-font-moncheri text-2xl sm:text-3xl lg:text-4xl flex items-center justify-center rounded-full w-full h-12 sm:h-14 lg:h-[4.5rem] shadow-2xl lg:mx-0"
-              transition={{ duration: 0.3 }}
-            >
-              <span className="translate-y-1.5">DIỄN VIÊN</span>
+            <motion.div className="" transition={{ duration: 0.3 }}>
+              <div className="text-[#FCF9D6] font-font-moncheri text-2xl sm:text-3xl lg:text-4xl flex items-center justify-center rounded-full w-full h-12 sm:h-14 lg:h-[4.5rem] shadow-2xl lg:mx-0">
+                <span className="translate-y-1.5">DIỄN VIÊN</span>
+              </div>
             </motion.div>
           </motion.div>
         </div>

@@ -19,7 +19,9 @@ export default function HomeClient() {
         <B4 />
         <B5 />
       </div>
-      <Footer />
+      <div className="lg:block hidden">
+        <Footer />
+      </div>
     </div>
   );
 }

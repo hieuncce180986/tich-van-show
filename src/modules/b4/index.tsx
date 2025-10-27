@@ -12,6 +12,7 @@ import {
   Image as ImageIcon,
   Plus,
   Minus,
+  Loader,
 } from "lucide-react";
 import { QRDialog } from "./components/qr";
 import { TicketsService } from "@/services/tickets";
@@ -110,15 +111,15 @@ export default function B4() {
     };
 
     // Initial fetch
-    fetchSchedule();
+    // fetchSchedule();
 
-    // Set up interval to fetch every 5 seconds
-    const interval = setInterval(fetchSchedule, 10000);
+    // // Set up interval to fetch every 5 seconds
+    // const interval = setInterval(fetchSchedule, 10000);
 
-    // Cleanup interval on component unmount
-    return () => {
-      clearInterval(interval);
-    };
+    // // Cleanup interval on component unmount
+    // return () => {
+    //   clearInterval(interval);
+    // };
   }, []);
 
   // Effect to adjust quantity when schedule changes
@@ -277,7 +278,7 @@ export default function B4() {
 
       // Prepare form data for submission
       const body = {
-        show_name: "Tên Show Diễn",
+        show_name: "Hoa Độc Điền Trang",
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
@@ -323,7 +324,7 @@ export default function B4() {
     <div id="ticket" className="relative pt-20">
       <div className="relative py-20 min-h-screen">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black via-transparent to-black z-20"></div>
-        <div className="absolute inset-0 w-full h-full z-10">
+        <div className="hidden lg:block absolute inset-0 w-full h-full z-10">
           <video
             autoPlay
             muted
@@ -622,8 +623,10 @@ export default function B4() {
                     className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-3"
                     isLoading={isSubmitting}
                   >
-                    {!isSubmitting && <Upload className="w-4 h-4 mr-2" />}
-                    {isSubmitting ? "Đang xử lý..." : "Đăng Ký Tham Gia"}
+                    {!isSubmitting ? null : (
+                      <Loader className="w-4 h-4 mr-2 animate-spin" />
+                    )}
+                    {isSubmitting ? "Đang đăng ký..." : "Đăng Ký Tham Gia"}
                   </Button>
                 </div>
               </form>
