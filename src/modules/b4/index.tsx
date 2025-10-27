@@ -674,11 +674,11 @@ export default function B4() {
                   <br />- Nếu có thắc mắc vui lòng liên hệ:
                   <br /> &nbsp; Admin:{" "}
                   <a
-                    href="https://zalo.me/0375475362"
+                    href="https://zalo.me/0975342991"
                     target="_blank"
                     className="text-[#B8931B] font-bold"
                   >
-                    Đặng Phước Vinh
+                    Nguyễn Công Hiếu
                   </a>
                 </div>
 
