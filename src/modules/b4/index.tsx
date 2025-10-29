@@ -533,8 +533,8 @@ export default function B4() {
                           >
                             <span className="text-white">
                               {item.key === "show-morning"
-                                ? "Sáng 9h00 - 10h30"
-                                : "Chiều 18h00 - 19h30"}
+                                ? "Sáng 9h30 – 11h00"
+                                : "Chiều 18h30 – 20h00"}
                             </span>
                           </div>
                         ));
@@ -553,7 +553,7 @@ export default function B4() {
                           MORNING_AMOUNT_OF_TICKET
                         }
                       >
-                        Sáng 9h00 - 10h30{" "}
+                        Sáng 9h30 – 11h00{" "}
                         {MORNING_AMOUNT_OF_TICKET -
                           scheduleMorning?.totalQuantity >
                         0
@@ -576,7 +576,7 @@ export default function B4() {
                           AFTERNOON_AMOUNT_OF_TICKET
                         }
                       >
-                        Chiều 18h00 - 19h30{" "}
+                        Chiều 18h30 - 20h00{" "}
                         {AFTERNOON_AMOUNT_OF_TICKET -
                           scheduleAfternoon?.totalQuantity >
                         0
