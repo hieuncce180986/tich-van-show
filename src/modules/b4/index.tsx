@@ -422,7 +422,7 @@ export default function B4() {
                   />
                 </motion.div>
                 <Image
-                  src="https://res.cloudinary.com/dx1ejni0o/image/upload/v1761735194/tich-van/tgtudxbekik1mzrfgazt.png"
+                  src="https://res.cloudinary.com/dx1ejni0o/image/upload/v1761738934/tich-van/tyxtolulmqvmxs1j8z8j.png"
                   alt="logo"
                   width={1000}
                   height={1000}
