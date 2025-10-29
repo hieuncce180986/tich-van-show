@@ -115,7 +115,7 @@ export function QRDialog({ total }: { total: string }) {
                   />
                 </div>
               </div>
-              <div>Ngân hàng: MB Bank</div>
+              <div>Ngân hàng: BIDV</div>
               <div>Nội dung: [Tên]_[Show]</div>
               <div>
                 <div>Chú thích:</div>
