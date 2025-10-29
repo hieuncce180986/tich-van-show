@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import main from "../../../public/images/TịchVan.png";
-import { Ticket } from "lucide-react";
+import { Play, Ticket } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import "@/styles/styles.css";
@@ -77,20 +77,55 @@ export default function B1() {
         </video>
       </div>
       <div className="relative z-30 grid grid-cols-12 h-screen">
-        <div
-          className="cursor-pointer loading absolute bottom-[10%] right-[5%] rotate-180 backdrop-blur-lg border border-white/20 w-14 h-14 flex items-center justify-center rounded-full hover:bg-white/10 transition-all duration-300"
-          onClick={() => {
-            setIsAudioPlaying(!isAudioPlaying);
-            if (videoRef.current) {
-              videoRef.current.muted = isAudioPlaying;
-            }
-          }}
+        <motion.div
+          className="absolute bottom-[10%] right-[14%] sm:right-[18%] lg:right-[5%] flex flex-row items-center justify-center gap-5"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <div className={`${isAudioPlaying ? "load" : "load-stop"}`}></div>
-          <div className={`${isAudioPlaying ? "load" : "load-stop"}`}></div>
-          <div className={`${isAudioPlaying ? "load" : "load-stop"}`}></div>
-          <div className={`${isAudioPlaying ? "load" : "load-stop"}`}></div>
-        </div>
+          <div
+            className="cursor-pointer loading rotate-180 backdrop-blur-lg border border-white/20 w-14 h-14 flex items-center justify-center rounded-full hover:bg-white/10 transition-all duration-300"
+            onClick={() => {
+              setIsAudioPlaying(!isAudioPlaying);
+              if (videoRef.current) {
+                videoRef.current.muted = isAudioPlaying;
+              }
+            }}
+          >
+            {isAudioPlaying ? (
+              <>
+                <div
+                  className={`${isAudioPlaying ? "load" : "load-stop"}`}
+                ></div>
+                <div
+                  className={`${isAudioPlaying ? "load" : "load-stop"}`}
+                ></div>
+                <div
+                  className={`${isAudioPlaying ? "load" : "load-stop"}`}
+                ></div>
+                <div
+                  className={`${isAudioPlaying ? "load" : "load-stop"}`}
+                ></div>
+              </>
+            ) : (
+              <Play
+                fill="#b8931b"
+                stroke="#b8931b"
+                className="w-7 h-7 rotate-180"
+              />
+            )}
+          </div>
+          <motion.div
+            className="text-[#FCF9D6] text-base font-bold font-font-moncheri"
+            initial={{ opacity: 0, x: 10 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            Hoa Độc Điền Trang
+          </motion.div>
+        </motion.div>
         <motion.div
           ref={mainContentRef}
           className="col-span-12 lg:col-span-6 flex flex-col justify-center items-center lg:ml-32 pb-0"

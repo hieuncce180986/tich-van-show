@@ -63,7 +63,8 @@ export default {
         "font-montserrat": "var(--font-montserrat)",
         "font-1ftv-vip-boogo": "var(--font-1ftv-vip-boogo)",
       },
-      screen: {
+      screens: {
+        sm: "400px",
         md: "790px",
         "3xl": "1900px",
       },
