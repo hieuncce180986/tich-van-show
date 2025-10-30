@@ -191,7 +191,7 @@ export default function B1() {
                   className="w-8 h-8 -rotate-45"
                 />
                 <div className="text-base lg:text-lg pt-1 font-bold font-font-moncheri">
-                  Mua vé
+                  Đặt vé
                 </div>
               </motion.div>
               <motion.div
