@@ -299,11 +299,10 @@ export default function B4() {
               <div className="max-w-xl flex flex-col items-center justify-center">
                 <div className="text-center mb-8">
                   <h2 className="text-3xl font-bold text-white mb-2">
-                    Đăng Ký Tham Gia
+                    Đăng Ký Mua Vé
                   </h2>
                   <p className="text-white/80">
-                    Vui lòng điền thông tin để đăng ký tham gia Hoa Độc Điền
-                    Trang
+                    Vui lòng điền thông tin để đăng ký mua vé Hoa Độc Điền Trang
                   </p>
                 </div>
 
@@ -484,7 +483,7 @@ export default function B4() {
                       {!isSubmitting ? null : (
                         <Loader className="w-4 h-4 mr-2 animate-spin" />
                       )}
-                      {isSubmitting ? "Đang đăng ký..." : "Đăng Ký Tham Gia"}
+                      {isSubmitting ? "Đang mua vé..." : "Mua vé"}
                     </Button>
                   </div>
                   {/* Success Message */}
