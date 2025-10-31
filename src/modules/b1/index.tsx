@@ -70,7 +70,7 @@ export default function B1() {
           className="w-full h-full object-cover"
         >
           <source
-            src="https://res.cloudinary.com/dx1ejni0o/video/upload/v1761460754/tich-van/sx18e7lkyvlrkznaj04r.mp4"
+            src="https://res.cloudinary.com/dx1ejni0o/video/upload/v1761901199/tich-van/p1yy1fmupahveeuh3yot.mp4"
             type="video/mp4"
           />
           Your browser does not support the video tag.
